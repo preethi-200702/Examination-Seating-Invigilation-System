@@ -1,6 +1,12 @@
 // Centralized API Client with standard error formatting and JWT attachment
 
-const BASE_URL = '/api';
+const API_ORIGIN = (
+  import.meta.env.VITE_API_URL || 'http://localhost:5000'
+)
+  .replace(/\/+$/, '')
+  .replace(/\/api$/i, '');
+
+const BASE_URL = `${API_ORIGIN}/api`;
 
 const getAuthHeaders = () => {
   const token = localStorage.getItem('token');
@@ -20,7 +26,6 @@ const handleResponse = async (response) => {
 
   if (!response.ok) {
     if (response.status === 401) {
-      // Unauthorized: clear local storage if token expired
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       const errorMessage = data.message || 'Your session has expired. Please login again.';
@@ -205,13 +210,13 @@ export const api = {
   // PDF APIs — returns a URL to open/download
   getPdfUrl: (path) => {
     const token = localStorage.getItem('token');
-    return `/api/pdf${path}?token=${token}`;
+    return `${BASE_URL}/pdf${path}?token=${token}`;
   },
 
   // Import APIs
   importPreview: (formData) => {
     const token = localStorage.getItem('token');
-    return fetch(`/api/import/preview`, {
+    return fetch(`${BASE_URL}/import/preview`, {
       method: 'POST',
       headers: token ? { Authorization: `Bearer ${token}` } : {},
       body: formData,
