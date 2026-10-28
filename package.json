@@ -1,0 +1,25 @@
+{
+  "name": "examination-seating-invigilation-system",
+  "version": "1.0.0",
+  "description": "3rd Year CSE MERN Full Stack Examination Seating & Invigilation Management System",
+  "scripts": {
+    "backend": "cd backend && npm start",
+    "backend:dev": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "seed": "cd backend && npm run seed",
+    "test:backend": "cd backend && npm test",
+    "build": "cd frontend && npm run build"
+  },
+  "keywords": [
+    "mern",
+    "react",
+    "express",
+    "mongodb",
+    "nodejs",
+    "examination-management",
+    "seating-arrangement",
+    "invigilation-system"
+  ],
+  "author": "3rd Year B.E. CSE Student",
+  "license": "ISC"
+}
